@@ -1,0 +1,62 @@
+DROP DATABASE IF EXISTS PHARMACIE;
+CREATE  DATABASE IF NOT EXISTS PHARMACIE DEFAULT CHARACTER SET utf8 ;
+USE PHARMACIE;
+   
+CREATE TABLE  administrateur(
+    nom_admin varchar(30) NOT null,
+    prenom_admin varchar(30) NOT null,
+    mot_de_pass varchar(30) NOT null,
+    contact varchar(30) NOT null,
+    question_securite_admin varchar(100) NOT NULL,
+    champ_securite_admin varchar(100) NOT NULL,
+    email  VARCHAR(30) NOT null,
+    PRIMARY KEY(nom_admin)
+    )
+    ENGINE=INNODB;
+    
+CREATE TABLE client(
+    nom_client varchar(30) NOT null,
+    prenom_client varchar(30) NOT null,
+    email  VARCHAR(30) NOT null,
+    contact varchar(30) NOT null,
+    mot_de_pass varchar(30) NOT null,
+    PRIMARY KEY(nom_client),
+    question_securite_client varchar(100) NOT NULL,
+    champ_securite_client varchar(100) NOT NULL
+    )
+    ENGINE=INNODB;
+ 
+
+
+
+   
+    
+CREATE TABLE medicament(
+    nom_client varchar(30) NOT null,
+    nom_admin varchar(30) NOT null,
+    nom_medicament varchar(30) NOT null,
+    prix_medicament int(10) not null,
+    quantite int(10) NOT null,
+    type varchar(30) NOT null,
+    date_ajout VARCHAR(30) NOT null,
+    date_expiration VARCHAR(30) NOT null,
+    numero_medicament int (10) NOT null,
+    nom_fabricant varchar(30) NOT null,
+    numero_facture int (10) not null,
+    maladie VARCHAR(30) NOT null,
+    posologie varchar(500) NOT null,
+    avertissement varchar (500) NOT null,
+    effets_secondaire varchar(500) not null,
+    PRIMARY KEY(numero_medicament),
+    CONSTRAINT FK_EL_PASS_a  FOREIGN KEY (  nom_client ) REFERENCES client ( nom_client),
+    CONSTRAINT FK_EL_PASS_b  FOREIGN KEY (  nom_admin ) REFERENCES administrateur ( nom_admin)
+   
+    )
+    ENGINE=INNODB;
+    
+
+
+
+    
+
+    
